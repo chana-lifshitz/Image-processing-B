@@ -3,7 +3,11 @@ from tkinter import filedialog
 import cv2
 import numpy as np
 from PIL import Image, ImageTk
-from warp import warp_image
+#תרגיל ###3
+from warp_ex3 import warp_image_loop
+
+###תרגיל 4
+from warp_ex4 import nearest_neighbor,bilinear
 
 def imread_unicode(path):
       img_array = np.fromfile(path, dtype=np.uint8)
@@ -140,7 +144,14 @@ class ImageApp:
         # --------------------------------------------------------
 
 
-        transformed = warp_image(self.original_image, angle, sx, sy)
+        #תרגיל 3
+        transformed = warp_image_loop(self.original_image, angle, sx, sy)
+
+        #תרגיל 4
+        ##1##
+        transformed = nearest_neighbor(self.original_image, angle, sx, sy)
+        ##2##
+        transformed = bilinear(self.original_image, angle, sx, sy)
         self.current_image = transformed
         self.show_on_canvas(self.current_image)
 
